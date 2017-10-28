@@ -42,7 +42,7 @@ int __read_mostly watchdog_thresh = 10;
 int __read_mostly sysctl_softlockup_all_cpu_backtrace;
 int __read_mostly sysctl_hardlockup_all_cpu_backtrace;
 #endif
-static struct cpumask watchdog_cpumask __read_mostly;
+static struct cpumask watchdog_cpumask __read_mostly;				//哪来的语法
 unsigned long *watchdog_cpumask_bits = cpumask_bits(&watchdog_cpumask);
 
 /* Helper for online, unparked cpus. */
