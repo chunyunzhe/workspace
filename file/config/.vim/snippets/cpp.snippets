@@ -1,0 +1,105 @@
+# Read File Into Vector
+snippet readfile
+	std::vector<char> v;
+	if (FILE *${2:fp} = fopen(${1:"filename"}, "r")) {
+		char buf[1024];
+		while (size_t len = fread(buf, 1, sizeof(buf), $2))
+			v.insert(v.end(), buf, buf + len);
+		fclose($2);
+	}${3}
+# namespace
+snippet name
+	using namespace std;
+
+	${1}
+# map
+snippet map
+	map<${1:key}, ${2:value}> vec_map${3};
+# vector
+snippet vector
+	vector<${1:string}> vec_vec${2};
+# deque
+snippet deque
+	deque<${1:string}> vec_deque${2};
+# list
+snippet list
+	list<S{1:string}> vec_list${2};
+# forward_list
+snippet forward
+	forward_list<${1:string}> vec_forward${2};
+# array
+snippet array
+	array<S{1:string}, S{2:64}> vec_array${3};
+# shared_ptr
+snippet shared
+	shared_ptr<${1:string}> ${2:pointer} = make_shared<$1> (${3:Initilization});
+# unique_ptr
+snippet unique
+	unique_ptr<${1:string}> ${2:pointer} (new $1(${3:Initilization}));
+# push
+snippet push
+	push_back(${1:ele});
+# push
+snippet pop
+	pop_front();
+# try
+snippet try
+	try{
+		${1:/*program-statements*/}
+	}catch(${2:exception-declaration}){
+		${3:handle-statements}
+	}
+# find
+snippet find
+	find(${1:beg}, ${2:end}, ${3:value});
+# find_if
+snippet fi
+	find_if(${1:beg}, ${2:end}, ${3:unaryPred})
+# find_if_no
+snippet fin
+	find_if_not(${1:beg}, ${2:end}, ${3:unaryPred});
+# for_each
+snippet fe
+	for_each(${1:beg}, ${2:end}, ${3:unaryOp});
+# search
+snippet search
+	search(${1:beg1}, ${2:end1}, ${3:beg2}, ${4:end2}${5:, binaryPred});
+# find_first_of
+snippet ffo
+	find_first_of(${1:beg1}, ${2:end1}, ${3:beg2}, ${4:end2}${5:, binaryPred});
+# find_end
+snippet fn
+	find_end(${1:beg1}, ${2:end1}, ${3:beg2}, ${4:end2}${5:, binaryPred});
+# Namespace
+snippet ns
+	namespace ${1:`Filename('', 'my')`} {
+		${2}
+	} /* $1 */
+# Class
+snippet cl
+	class ${1:`Filename('$1_t', 'name')`}{
+		public:
+			$1(${2:void});
+			virtual ~$1();
+	
+		private:
+			${3:/* data */}
+	};
+# cin
+snippet cin
+	cin>>${1:str};
+	${2}
+# cout
+snippet cout
+	cout<<${1:str}<<endl;${2}
+# /**/
+snippet /*
+	/*
+	 * -------------------------------------------------------------------------------------------------
+	 * class:	${1:classname}
+	 * funct:	${2:functionname}
+	 * descr:	${3:descrition}
+	 * param:	${4:para}
+	 * retur:	${5:return}
+	 * -------------------------------------------------------------------------------------------------
+	 */
