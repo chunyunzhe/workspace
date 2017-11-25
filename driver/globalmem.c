@@ -11,7 +11,7 @@ static int globalmem_release(struct inode *inode, struct file *filp)
 	return 0;
 }/*}}}*/
 
-static int globalmem_ioctl(struct inode *inode, struct file *filp, unsigned int cmd, unsigned long arg)
+static long globalmem_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 {/*{{{*/
 	struct globalmem_dev *dev = filp->private_data;
 	switch(cmd){

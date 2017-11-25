@@ -6,9 +6,10 @@
 #include <linux/sched.h>
 #include <linux/init.h>
 #include <linux/cdev.h>
+#include <linux/slab.h>
 
 #include <asm/io.h>
-#include <asm/system.h>
+//#include <asm/system.h>
 #include <asm/uaccess.h>
 
 #define GLOBALMEM_SIZE 0x1000
@@ -25,9 +26,10 @@ struct globalmem_dev{
 	struct semaphore sem;
 };
 struct globalmem_dev *globalmem_devp;
-int globalmem_open(struct inode *, struct file *);
-int globalmem_release(struct inode *, struct file *);
-static int globalmem_ioctl(struct inode *, struct file *, unsigned int, unsigned long);
+static int globalmem_open(struct inode *, struct file *);
+static int globalmem_release(struct inode *, struct file *);
+//static long globalmem_ioctl(struct inode *, struct file *, unsigned int, unsigned long);
+static long globalmem_ioctl(struct file *, unsigned int, unsigned long);
 static ssize_t globalmem_read(struct file *, char __user *, size_t, loff_t *);
 static ssize_t globalmem_write(struct file *, const char __user *, size_t, loff_t *);
 static loff_t globalmem_llseek(struct file *, loff_t, int);
@@ -37,7 +39,7 @@ static const struct file_operations globalmem_fops = {
 	.llseek = globalmem_llseek,
 	.read = globalmem_read,
 	.write = globalmem_write,
-	.unlocked = globalmem_ioctl,
+	.unlocked_ioctl = globalmem_ioctl,
 	.open = globalmem_open,
 	.release = globalmem_release
 };
